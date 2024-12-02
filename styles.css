@@ -52,76 +52,67 @@ header h1 {
     gap: 20px;
 }
 
-/* Links estilizados como banners */
-.links-list a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #0ea5e9;
-    font-weight: 600;
+/* Botão de link */
+.link-btn {
+    font-size: 1.2rem;
     padding: 15px;
+    border: none;
     border-radius: 8px;
     background: rgba(14, 165, 233, 0.1);
+    color: #0ea5e9;
+    font-weight: 600;
+    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.links-list a:hover {
+.link-btn:hover {
     background-color: #0ea5e9;
     color: #1e293b;
     transform: scale(1.05);
 }
 
-/* Imagem do banner */
-.link-banner {
-    width: 100px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 15px;
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-/* Texto do link */
-.links-list span {
-    font-size: 1.1rem;
-    text-align: left;
-    flex: 1;
+.modal.hidden {
+    display: none;
 }
 
-/* Rodapé */
-footer {
-    padding: 15px;
-    font-size: 0.9rem;
-    color: #94a3b8;
-    background: #0f172a;
+.modal-content {
+    background: #f8fafc;
+    color: #1e293b;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    position: relative;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .container {
-        max-width: 100%;
-    }
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dc2626;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
 
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    .links-list a {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .link-banner {
-        width: 100%;
-        height: auto;
-        margin: 0 0 10px 0;
-    }
-
-    .links-list span {
-        text-align: center;
-        width: 100%;
-    }
-
-    footer {
-        font-size: 0.8rem;
-    }
+.close-btn:hover {
+    background: #b91c1c;
 }
