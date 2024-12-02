@@ -6,63 +6,93 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #1e293b, #64748b);
+    font-family: 'Roboto', Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
     color: #f8fafc;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 20px;
 }
 
+/* Container principal */
 .container {
-    max-width: 600px;
+    max-width: 400px;
     width: 100%;
     text-align: center;
-    padding: 20px;
     background: #1e293b;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
+/* Logotipo e cabeçalho */
 header .logo {
-    max-width: 150px;
-    margin-bottom: 20px;
-    border-radius: 10px;
+    max-width: 100px;
+    margin: 20px auto 10px;
+    display: block;
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 5px;
 }
 
-main h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
+header h1 {
+    font-size: 1.8rem;
     color: #facc15;
+    margin-bottom: 20px;
 }
 
+/* Lista de links */
 .links-list {
     list-style: none;
-}
-
-.links-list li {
-    margin: 10px 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .links-list a {
     text-decoration: none;
     color: #0ea5e9;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 25px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    display: inline-block;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: rgba(14, 165, 233, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
 }
 
 .links-list a:hover {
     background-color: #0ea5e9;
     color: #1e293b;
+    transform: scale(1.05);
 }
 
+/* Rodapé */
 footer {
-    margin-top: 20px;
-    font-size: 0.9em;
+    padding: 15px;
+    font-size: 0.9rem;
     color: #94a3b8;
+    background: #0f172a;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .links-list a {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
 }
