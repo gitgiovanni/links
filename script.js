@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Detalhes do Link 2",
             image: "https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0xODAxJnZlcj0xMDAwJmZpbGU9Y3Vyc28tdGVjbmljby1kZS10aS5qcGcmY3JjPTEyMDE3MDU5OTkmc2l6ZT0wLjI1NTEyMSZ1SWQ9MjUmZlNJZD0xJnVTSWQ9MSZkPWZhbHNlJnRrbj0mcHVibGljVXJsPXRydWUmYXR0YWNoPWZhbHNl.jpg",
             description: "Aqui estão os detalhes do Link 2.",
-            link: "#"
+            link: "https://outlook.maiex13.com.br/owa/auth/logon.aspx?replaceCurrent=1&url=https%3a%2f%2foutlook.maiex13.com.br%2fowa"
         },
         3: {
             title: "Detalhes do Link 3",
