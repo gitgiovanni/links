@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         5: {
             title: "Buscar meu email",
+            image: null,
             description: "Ferramenta para buscar seu email utilizando seu CPF.",
             link: "#"
         }
@@ -44,7 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".link-btn").forEach(button => {
         button.addEventListener("click", () => {
             const infoId = button.dataset.info;
-            const { title, image, description, link } = details[infoId];
+            const detail = details[infoId] || {};
+            const { title, image, description, link } = detail;
 
             if (infoId === "5") {
                 // Email lookup modal
@@ -52,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 // Existing info modal
                 modalDetails.innerHTML = `
-                    <h2>${title}</h2>
+                    <h2>${title || 'Informações'}</h2>
                     ${image ? `<img src="${image}" alt="${title}" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">` : ''}
                     <p>${description}</p>
                     <a href="${link}" target="_blank" style="color: #0ea5e9; text-decoration: underline;">Clique aqui</a>
