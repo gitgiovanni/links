@@ -36,22 +36,29 @@ body {
 }
 
 
-/* Logotipo e cabeçalho */
-header .logo {
-    max-width: 100px;
-    margin: 20px auto 10px;
-    display: block;
-    border-radius: 50%;
-    background: #ffffff;
-    padding: 5px;
+header {
+    background-color: #1e293b;
+    padding: 10px 20px;
+    border-radius: 10px 10px 0 0;
 }
 
-header h1 {
-    font-size: 1.8rem;
-    color: #facc15;
-    margin-bottom: 20px;
+header .nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
+header .nav-list li a {
+    text-decoration: none;
+    color: #94a3b8;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header .nav-list li a:hover {
+    color: #0ea5e9;
+}
 /* Lista de links */
 .links-list {
     list-style: none;
@@ -171,12 +178,13 @@ header h1 {
     text-align: center;
     font-size: 1rem;
 }
-        footer {
-    margin-top: 40px;
+footer {
+    margin-top: 20px;
     text-align: center;
-    padding: 20px;
-    background: #1e293b;
+    padding: 10px;
+    background-color: #1e293b;
     color: #94a3b8;
+    border-radius: 0 0 10px 10px;
     font-size: 0.9rem;
 }
 footer a {
@@ -192,15 +200,14 @@ footer a:hover {
 <body>
     <div class="container">
         <header>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#info">Informações</a></li>
-            <li><a href="#contato">Contato</a></li>
-        </ul>
-    </nav>
-</header>
-
+        <nav>
+            <ul class="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#info">Informações</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
         <main>
             <ul class="links-list">
                 <li><button class="link-btn" data-info="1">Qual é o meu email?</button></li>
@@ -210,6 +217,9 @@ footer a:hover {
                 <li><button class="link-btn" data-info="5">Buscar meu email</button></li>
             </ul>
         </main>
+        <footer>
+        <p>&copy; 2024 Andra. Todos os direitos reservados.</p>
+            </footer>
     </div>
 
     <div id="infoModal" class="modal hidden">
@@ -230,10 +240,7 @@ footer a:hover {
             </div>
         </div>
     </div>
-    <footer>
-    <p>&copy; 2024 Andra. Todos os direitos reservados.</p>
-    <p><a href="https://github.com/gitgiovanni/Busca-Email">Veja no GitHub</a></p>
-</footer>
+  
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
