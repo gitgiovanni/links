@@ -48,4 +48,87 @@ document.addEventListener("DOMContentLoaded", () => {
     closeModal.addEventListener("click", () => {
         modal.classList.add("hidden");
     });
+
+    // Função da página do CPF
+    const senhaCorreta = "MUDAR@123"; 
+    let emailBuscado = false;
+
+    function verificarSenha() {
+        const senha = document.getElementById('password').value.toLowerCase();
+        const senhaCorretaLower = senhaCorreta.toLowerCase();
+        const loginMessage = document.getElementById('loginMessage');
+
+        if (senha === senhaCorretaLower) {
+            document.getElementById('loginContainer').classList.remove('active');
+            document.getElementById('siteContent').classList.add('active');
+            emailBuscado = false;
+        } else {
+            loginMessage.textContent = "Senha incorreta. Tente novamente.";
+            loginMessage.style.color = "red";
+        }
+    }
+
+    function togglePassword() {
+        const passwordField = document.getElementById('password');
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+
+    function mascaraCPF(input) {
+        let value = input.value.replace(/\D/g, ''); 
+        value = value.replace(/(\d{3})(\d)/, '$1.$2'); 
+        value = value.replace(/(\d{3})(\d)/, '$1.$2'); 
+        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); 
+        input.value = value;
+    }
+
+    async function buscarEmail(event) {
+        event.preventDefault();
+
+        if (emailBuscado) return;
+
+        const cpfInput = document.getElementById('cpf');
+        const cpf = cpfInput.value.replace(/\D/g, '');
+        const emailDisplay = document.getElementById('emailDisplay');
+        const spinner = document.getElementById('spinner');
+
+        if (cpf.length !== 11) {
+            emailDisplay.textContent = "CPF inválido.";
+            return;
+        }
+
+        try {
+            spinner.style.display = 'block';
+            cpfInput.disabled = true;
+            emailDisplay.textContent = "Buscando...";
+
+            const response = await fetch(`https://10.30.35.8:8443/rest`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Erro na busca do e-mail.');
+            }
+
+            const data = await response.json();
+            const email = (data.Funcionarios && data.Funcionarios.length > 0) ? data.Funcionarios[0].Email.trim() : "Funcionário não encontrado.";
+
+            emailDisplay.textContent = email;
+            emailBuscado = true;
+        } catch (error) {
+            emailDisplay.textContent = "Erro ao buscar e-mail: " + error.message;
+        } finally {
+            spinner.style.display = 'none';
+            cpfInput.disabled = false;
+            cpfInput.value = '';
+        }
+    }
+
+    document.getElementById('cpf').addEventListener('blur', buscarEmail);
 });
