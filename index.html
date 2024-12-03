@@ -148,10 +148,21 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    opacity: 0;
+    transform: scale(1.1) translateY(-50px);
+    visibility: hidden;
+    transition: all 0.5s ease-out, visibility 0s linear 0.5s;
+}
+
+.modal.show {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    visibility: visible;
+    transition: all 0.5s ease-out;
 }
 
 .modal.hidden {
-    display: none;
+    animation: modalExit 0.6s ease-in-out forwards;
 }
 
 .modal-content {
@@ -162,25 +173,52 @@
     max-width: 600px;
     padding: 20px;
     position: relative;
-    animation: fadeIn 0.5s ease-in-out;
     max-height: 80vh;
     overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: modalEnter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
-@keyframes fadeIn {
-    from {
+
+@keyframes modalEnter {
+    0% {
         opacity: 0;
-        transform: translateY(20px);
+        transform: scale(0.8) rotate(-5deg) translateY(50px);
+        filter: blur(10px);
     }
-    to {
+    50% {
+        transform: scale(1.05) rotate(2deg) translateY(0);
+        filter: blur(5px);
+    }
+    100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1) rotate(0) translateY(0);
+        filter: blur(0);
     }
 }
+
+@keyframes modalExit {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+        filter: blur(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.9) rotate(-3deg);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-10deg) translateY(100px);
+        filter: blur(10px);
+    }
+}
+
 .close-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #dc2626;
+    background: linear-gradient(45deg, #ef4444, #dc2626);
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -188,10 +226,13 @@
     height: 30px;
     font-size: 1.2rem;
     cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
 }
 
 .close-btn:hover {
-    background: #b91c1c;
+    background: linear-gradient(45deg, #b91c1c, #9d1a1a);
+    transform: scale(1.1) rotate(10deg);
 }
 
 /* Markdown-like styling for modal content */
@@ -319,8 +360,8 @@ footer a:hover {
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("infoModal");
-    const closeModal = document.getElementById("closeModal");
+    const modal = document.querySelector('.modal');
+const closeButton = document.querySelector('.close-btn');
     const modalDetails = document.getElementById("modalDetails");
 
     const emailLookupModal = document.getElementById("emailLookupModal");
