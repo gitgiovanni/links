@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
             link: "#"
         },
         2: {
-            title: "Detalhes do Link 2",
-            image: "https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0xODAxJnZlcj0xMDAwJmZpbGU9Y3Vyc28tdGVjbmljby1kZS10aS5qcGcmY3JjPTEyMDE3MDU5OTkmc2l6ZT0wLjI1NTEyMSZ1SWQ9MjUmZlNJZD0xJnVTSWQ9MSZkPWZhbHNlJnRrbj0mcHVibGljVXJsPXRydWUmYXR0YWNoPWZhbHNl.jpg",
-            description: "Aqui estão os detalhes do Link 2.",
+            title: "Como eu entro no meu email?",
+            image: "https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0yMDMxJnZlcj0xMDAwJmZpbGU9b3VsLnBuZyZjcmM9MjQwMTUyMTY5OSZzaXplPTAuMDI2ODMzJnVJZD0yNSZmU0lkPTEmdVNJZD0xJmQ9ZmFsc2UmdGtuPSZwdWJsaWNVcmw9dHJ1ZSZhdHRhY2g9ZmFsc2U=.png",
+            description: "Para entrar no Seu email, primeiro Acesse o link abaixo. Sem esse link, você não vai conseguir entrar, ja que esse link é especifico pra usar o email com @andra.com.br !!     Ao entrar, insira o seu email e depois a senha padrão: Mudar@12",
             link: "https://outlook.maiex13.com.br/owa/auth/logon.aspx?replaceCurrent=1&url=https%3a%2f%2foutlook.maiex13.com.br%2fowa"
         },
         3: {
