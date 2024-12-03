@@ -1,4 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const homeLink = document.getElementById("homeLink");
+    const consultaLink = document.getElementById("consultaLink");
+    const homeSection = document.getElementById("homeSection");
+    const consultaSection = document.getElementById("consultaSection");
+
+    // Menu toggling functionality
+    homeLink.addEventListener("click", () => {
+        homeSection.classList.add("active");
+        consultaSection.classList.remove("active");
+        homeSection.classList.remove("hidden");
+        consultaSection.classList.add("hidden");
+        homeLink.classList.add("active");
+        consultaLink.classList.remove("active");
+    });
+
+    consultaLink.addEventListener("click", () => {
+        consultaSection.classList.add("active");
+        homeSection.classList.remove("active");
+        consultaSection.classList.remove("hidden");
+        homeSection.classList.add("hidden");
+        consultaLink.classList.add("active");
+        homeLink.classList.remove("active");
+    });
+
     const modal = document.getElementById("infoModal");
     const closeModal = document.getElementById("closeModal");
     const modalDetails = document.getElementById("modalDetails");
@@ -49,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.classList.add("hidden");
     });
 
-    // Função da página do CPF
+    // Existing CPF page functions (verificarSenha, togglePassword, mascaraCPF, buscarEmail)
     const senhaCorreta = "MUDAR@123"; 
     let emailBuscado = false;
 
@@ -112,23 +136,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            if (!response.ok) {
-                throw new Error('Erro na busca do e-mail.');
-            }
-
-            const data = await response.json();
-            const email = (data.Funcionarios && data.Funcionarios.length > 0) ? data.Funcionarios[0].Email.trim() : "Funcionário não encontrado.";
-
-            emailDisplay.textContent = email;
-            emailBuscado = true;
-        } catch (error) {
-            emailDisplay.textContent = "Erro ao buscar e-mail: " + error.message;
-        } finally {
-            spinner.style.display = 'none';
-            cpfInput.disabled = false;
-            cpfInput.value = '';
+              if (!response.ok) {
+            throw new Error('Erro na busca do e-mail.');
         }
-    }
 
-    document.getElementById('cpf').addEventListener('blur', buscarEmail);
-});
+        const data = await response.json();
+        const email = (data.Funcionarios && data.Funcionarios.length > 0) ? data.Funcionarios[0].Email.trim() : "Funcionário não encontrado.";
+
+        emailDisplay.textContent = email;
+        emailBuscado = true; // Marcar que a busca foi realizada
+    } catch (error) {
+        emailDisplay.textContent = "Erro ao buscar e-mail: " + error.message;
+    } finally {
+        // Oculta o spinner e habilita o campo de CPF
+        spinner.style.display = 'none';
+        cpfInput.disabled = false;
+        cpfInput.value = ''; // Limpa o campo de CPF, se desejar
+    }
+}
