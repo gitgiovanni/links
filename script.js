@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         emailResult.innerHTML = '<p style="color: blue;">Buscando email...</p>';
 
         try {
-            const response = await fetch(`https://10.30.35.8:8443/rest/findEmail?cpf=${cpf}`, {
+            const response = await fetch(`https://10.30.35.8:8443/REST/WSGETFUNCIONARIO?cpf=${cpf}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json'
