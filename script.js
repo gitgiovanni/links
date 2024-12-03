@@ -30,17 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-     document.querySelectorAll(".link-btn").forEach(button => {
+    document.querySelectorAll(".link-btn").forEach(button => {
         button.addEventListener("click", () => {
             const infoId = button.dataset.info;
             const { title, image, description, link } = details[infoId];
 
-            modalDetails.innerHTML = 
+            modalDetails.innerHTML = `
                 <h2>${title}</h2>
                 <img src="${image}" alt="${title}" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">
                 <p>${description}</p>
                 <a href="${link}" target="_blank" style="color: #0ea5e9; text-decoration: underline;">Clique aqui</a>
-            ;
+            `;
             modal.classList.remove("hidden");
         });
     });
@@ -49,3 +49,4 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.classList.add("hidden");
     });
 });
+    
