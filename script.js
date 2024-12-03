@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         4: {
             title: "Como acessar o Meu RH",
-            image: "https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0xODAxJnZlcj0xMDAwJmZpbGU9Y3Vyc28tdGVjbmljby1kZS10aS5qcGcmY3JjPTEyMDE3MDU5OTkmc2l6ZT0wLjI1NTEyMSZ1SWQ9MjUmZlNJZD0xJnVTSWQ9MSZkPWZhbHNlJnRrbj0mcHVibGljVXJsPXRydWUmYXR0YWNoPWZhbHNl.jpg",
+            image: "https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0yMDM2JnZlcj0xMDAwJmZpbGU9bWV1cmgtYmFubmVyLXRkbi5wbmcmY3JjPTM4Nzc4NDg3NTAmc2l6ZT0wLjAxMzAzOSZ1SWQ9MjUmZlNJZD0xJnVTSWQ9MSZkPWZhbHNlJnRrbj0mcHVibGljVXJsPXRydWUmYXR0YWNoPWZhbHNl.png",
             description: "Acesse o link abaixo, lá tem todas as informações necessárias para o seu acesso ao Meu RH!",
             link: "https://fluig.andra.com.br/portal/p/01/HoleriteAndra"
         }
