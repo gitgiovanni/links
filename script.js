@@ -33,47 +33,32 @@ document.addEventListener("DOMContentLoaded", () => {
             image: "https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0yMDM2JnZlcj0xMDAwJmZpbGU9bWV1cmgtYmFubmVyLXRkbi5wbmc=.png",
             description: "Acesse o link abaixo, lá tem todas as informações necessárias para o seu acesso ao Meu RH!",
             link: "https://fluig.andra.com.br/portal/p/01/HoleriteAndra"
-        },
-        5: {
-            title: "Buscar meu email",
-            image: null,
-            description: "Ferramenta para buscar seu email utilizando seu CPF.",
-            link: "#"
         }
     };
 
     document.querySelectorAll(".link-btn").forEach(button => {
         button.addEventListener("click", () => {
             const infoId = button.dataset.info;
-            const detail = details[infoId] || {};
-            const { title, image, description, link } = detail;
-
+            
             if (infoId === "5") {
-                // Email lookup modal
+                // Email lookup specific modal
                 emailLookupModal.classList.remove("hidden");
-            } else {
-                // Existing info modal
-                modalDetails.innerHTML = `
-                    <h2>${title || 'Informações'}</h2>
-                    ${image ? `<img src="${image}" alt="${title}" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">` : ''}
-                    <p>${description}</p>
-                    <a href="${link}" target="_blank" style="color: #0ea5e9; text-decoration: underline;">Clique aqui</a>
-                `;
-                modal.classList.remove("hidden");
+                return;
             }
+
+            // Regular info modal
+            const { title, image, description, link } = details[infoId];
+            modalDetails.innerHTML = `
+                <h2>${title}</h2>
+                ${image ? `<img src="${image}" alt="${title}" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">` : ''}
+                <p>${description}</p>
+                <a href="${link}" target="_blank" style="color: #0ea5e9; text-decoration: underline;">Clique aqui</a>
+            `;
+            modal.classList.remove("hidden");
         });
     });
 
-    closeModal.addEventListener("click", () => {
-        modal.classList.add("hidden");
-    });
-
-    closeEmailLookupModal.addEventListener("click", () => {
-        emailLookupModal.classList.add("hidden");
-        cpfInput.value = '';
-        emailResult.innerHTML = '';
-    });
-
+    // Email lookup functionality
     findEmailBtn.addEventListener("click", async () => {
         const cpf = cpfInput.value.replace(/[^\d]/g, '');
 
@@ -81,6 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
             emailResult.innerHTML = '<p style="color: red;">CPF inválido. Digite 11 dígitos.</p>';
             return;
         }
+
+        // Simulating API call (replace with actual API endpoint)
+        emailResult.innerHTML = '<p style="color: blue;">Buscando email...</p>';
 
         try {
             const response = await fetch(`https://10.30.35.8:8443/rest/findEmail?cpf=${cpf}`, {
@@ -91,18 +79,39 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (!response.ok) {
-                throw new Error('Erro ao buscar email');
+                throw new Error('Não foi possível buscar o email');
             }
 
             const data = await response.json();
             
             if (data.email) {
-                emailResult.innerHTML = `<p>Seu email: <strong>${data.email}</strong></p>`;
+                // Create a modal with email details
+                modalDetails.innerHTML = `
+                    <h2>Resultado da Busca</h2>
+                    <p>Email encontrado:</p>
+                    <h3 style="color: #0ea5e9;">${data.email}</h3>
+                    <p>Data de Admissão: ${data.admissionDate || 'Não disponível'}</p>
+                `;
+                
+                // Close email lookup modal and open info modal
+                emailLookupModal.classList.add("hidden");
+                modal.classList.remove("hidden");
             } else {
                 emailResult.innerHTML = '<p style="color: red;">Nenhum email encontrado para este CPF.</p>';
             }
         } catch (error) {
             emailResult.innerHTML = `<p style="color: red;">Erro: ${error.message}</p>`;
         }
+    });
+
+    // Modal close events
+    closeModal.addEventListener("click", () => {
+        modal.classList.add("hidden");
+    });
+
+    closeEmailLookupModal.addEventListener("click", () => {
+        emailLookupModal.classList.add("hidden");
+        cpfInput.value = '';
+        emailResult.innerHTML = '';
     });
 });
