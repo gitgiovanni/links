@@ -3,6 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeModal = document.getElementById("closeModal");
     const modalDetails = document.getElementById("modalDetails");
 
+    const emailLookupModal = document.getElementById("emailLookupModal");
+    const closeEmailLookupModal = document.getElementById("closeEmailLookupModal");
+    const cpfInput = document.getElementById("cpfInput");
+    const findEmailBtn = document.getElementById("findEmailBtn");
+    const emailResult = document.getElementById("emailResult");
+
     const details = {
         1: {
             title: "Como saber qual é o seu email?",
@@ -18,15 +24,20 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         3: {
             title: "Como acessar o fluig?",
-            image: "https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0yMDM0JnZlcj0xMDAwJmZpbGU9Zmx1Z2FzK3BhZ2luYS5wbmcmY3JjPTc1MDU4OTg3NiZzaXplPTAuNzczNDA5JnVJZD0yNSZmU0lkPTEmdVNJZD0xJmQ9ZmFsc2UmdGtuPSZwdWJsaWNVcmw9dHJ1ZSZhdHRhY2g9ZmFsc2U=.png",
-            description: "Para acessar o fluig, você terá dois caminhos diferentes... um se você estiver usando o computador, e outro se você estiver usando o celular. PELO CELULAR: Primeiramente, baixe o aplicativo MY FLUIG, ele é tanto para android como pra IOS! Depois, clique em 'Esqueci minha senha' e insira seu Email. Vai chegar pra você um email simples, você clica e escolhe sua nova senha! Agora entre no fluig com email e a nova senha definida. PARA COMPUTADOR: O processo é parecido, você vai acessar o link abaixo, e então, clicar em esqueci minha senha e inserir o seu email. Vai chegar pra você um email simples onde você vai seguir as instruções e definir uma nova senha. Aí basta entrar no fluig com Email e a nova senha definida. Lembre-se: em ambos os casos é importante você salvar ou se lembrar da sua senha!    ",
+            image: "https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0yMDM0JnZlcj0xMDAwJmZpbGU9Zmx1Z2FzK3BhZ2luYS5wbmc=.png",
+            description: "Para acessar o fluig, você terá dois caminhos diferentes... um se você estiver usando o computador, e outro se você estiver usando o celular...",
             link: "https://fluig.andra.com.br/portal/p/01/home"
         },
         4: {
             title: "Como acessar o Meu RH",
-            image: "https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0yMDM2JnZlcj0xMDAwJmZpbGU9bWV1cmgtYmFubmVyLXRkbi5wbmcmY3JjPTM4Nzc4NDg3NTAmc2l6ZT0wLjAxMzAzOSZ1SWQ9MjUmZlNJZD0xJnVTSWQ9MSZkPWZhbHNlJnRrbj0mcHVibGljVXJsPXRydWUmYXR0YWNoPWZhbHNl.png",
+            image: "https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0yMDM2JnZlcj0xMDAwJmZpbGU9bWV1cmgtYmFubmVyLXRkbi5wbmc=.png",
             description: "Acesse o link abaixo, lá tem todas as informações necessárias para o seu acesso ao Meu RH!",
             link: "https://fluig.andra.com.br/portal/p/01/HoleriteAndra"
+        },
+        5: {
+            title: "Buscar meu email",
+            description: "Ferramenta para buscar seu email utilizando seu CPF.",
+            link: "#"
         }
     };
 
@@ -35,18 +46,61 @@ document.addEventListener("DOMContentLoaded", () => {
             const infoId = button.dataset.info;
             const { title, image, description, link } = details[infoId];
 
-            modalDetails.innerHTML = `
-                <h2>${title}</h2>
-                <img src="${image}" alt="${title}" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">
-                <p>${description}</p>
-                <a href="${link}" target="_blank" style="color: #0ea5e9; text-decoration: underline;">Clique aqui</a>
-            `;
-            modal.classList.remove("hidden");
+            if (infoId === "5") {
+                // Email lookup modal
+                emailLookupModal.classList.remove("hidden");
+            } else {
+                // Existing info modal
+                modalDetails.innerHTML = `
+                    <h2>${title}</h2>
+                    ${image ? `<img src="${image}" alt="${title}" style="width: 100%; border-radius: 8px; margin-bottom: 20px;">` : ''}
+                    <p>${description}</p>
+                    <a href="${link}" target="_blank" style="color: #0ea5e9; text-decoration: underline;">Clique aqui</a>
+                `;
+                modal.classList.remove("hidden");
+            }
         });
     });
 
     closeModal.addEventListener("click", () => {
         modal.classList.add("hidden");
     });
+
+    closeEmailLookupModal.addEventListener("click", () => {
+        emailLookupModal.classList.add("hidden");
+        cpfInput.value = '';
+        emailResult.innerHTML = '';
+    });
+
+    findEmailBtn.addEventListener("click", async () => {
+        const cpf = cpfInput.value.replace(/[^\d]/g, '');
+
+        if (cpf.length !== 11) {
+            emailResult.innerHTML = '<p style="color: red;">CPF inválido. Digite 11 dígitos.</p>';
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://10.30.35.8:8443/rest/findEmail?cpf=${cpf}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Erro ao buscar email');
+            }
+
+            const data = await response.json();
+            
+            if (data.email) {
+                emailResult.innerHTML = `<p>Seu email: <strong>${data.email}</strong></p>`;
+            } else {
+                emailResult.innerHTML = '<p style="color: red;">Nenhum email encontrado para este CPF.</p>';
+            }
+        } catch (error) {
+            emailResult.innerHTML = `<p style="color: red;">Erro: ${error.message}</p>`;
+        }
+    });
 });
-    
