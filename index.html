@@ -6,7 +6,7 @@
     <title>ANDRA - Informações e Emails</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        * {
+     * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -118,6 +118,8 @@ header .nav-list li a:hover {
     padding: 20px;
     position: relative;
     animation: fadeIn 0.5s ease-in-out;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 @keyframes fadeIn {
     from {
@@ -145,6 +147,27 @@ header .nav-list li a:hover {
 
 .close-btn:hover {
     background: #b91c1c;
+}
+
+/* Markdown-like styling for modal content */
+.modal-content h2 {
+    color: #0ea5e9;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.modal-content strong {
+    color: #0284c7;
+}
+
+.modal-content p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.modal-content ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
 }
 
 /* Email Lookup Styles */
@@ -183,7 +206,7 @@ header .nav-list li a:hover {
     text-align: center;
     font-size: 1rem;
 }
- footer {
+  footer {
             position: fixed;
             bottom: 0;
             width: 100%;
@@ -207,9 +230,9 @@ footer a:hover {
      <header>
         <nav>
             <ul class="nav-list">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#info">Informações</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#home" id="homeLink">Home</a></li>
+                <li><a href="#info" id="infoLink">Informações</a></li>
+                <li><a href="#contato" id="contatoLink">Contato</a></li>
             </ul>
         </nav>
     </header>
@@ -354,6 +377,57 @@ footer a:hover {
         } catch (error) {
             emailResult.innerHTML = `<p style="color: red;">Erro: ${error.message}</p>`;
         }
+    });
+             const infoLink = document.getElementById("infoLink");
+    const contatoLink = document.getElementById("contatoLink");
+
+    infoLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        modalDetails.innerHTML = `
+            <h2>Importância do E-mail Corporativo</h2>
+            <p>Por que é importante um funcionário ter um e-mail corporativo? O <strong>e-mail corporativo</strong> é uma ferramenta essencial para profissionais de qualquer empresa. Ele oferece benefícios que vão muito além da simples troca de mensagens, contribuindo para a produtividade, segurança e imagem da organização. Aqui estão os principais motivos:</p>
+            
+            <ol>
+                <li><strong>Comunicação Oficial</strong>: Um e-mail corporativo serve como meio oficial de comunicação com clientes, fornecedores e outros colaboradores. Ele reflete a identidade da empresa, transmitindo profissionalismo e credibilidade.</li>
+                <li><strong>Controle e Segurança</strong>: O uso de e-mails corporativos garante que as informações trocadas fiquem armazenadas em servidores controlados pela empresa, evitando vazamentos de dados sensíveis e assegurando conformidade com políticas internas e legislações como a LGPD.</li>
+                <li><strong>Organização e Integração</strong>: Ter e-mails padronizados permite melhor organização interna e facilita a integração com sistemas corporativos, como calendários, plataformas de colaboração (Fluig, por exemplo) e ferramentas de produtividade.</li>
+                <li><strong>Identidade e Reconhecimento</strong>: O e-mail corporativo reforça a identidade do funcionário como parte da equipe, ajudando-o a se posicionar de forma profissional em suas interações externas.</li>
+                <li><strong>Acompanhamento de Atividades</strong>: A empresa consegue monitorar melhor as comunicações relacionadas ao trabalho, garantindo que processos e interações sejam rastreáveis e estejam alinhados com os objetivos organizacionais.</li>
+            </ol>
+            
+            <p>Em resumo, o e-mail corporativo não é apenas uma ferramenta prática, mas também um elemento estratégico para a segurança, organização e imagem da empresa e de seus colaboradores.</p>
+            
+            <h2>O que é o Fluig?</h2>
+            <p>O <strong>Fluig</strong> é uma plataforma de gestão e colaboração que integra processos, documentos e pessoas em um único ambiente. Ele é amplamente utilizado por empresas para otimizar fluxos de trabalho, centralizar informações e melhorar a comunicação interna. Com o Fluig, é possível criar e gerenciar formulários, automatizar processos administrativos e acompanhar indicadores de desempenho de maneira eficiente e organizada.</p>
+            
+            <h2>O que é o Meu RH?</h2>
+            <p>O <strong>Meu RH</strong> é uma plataforma criada para facilitar o acesso dos funcionários a informações e serviços relacionados à gestão de pessoas. Ele funciona como um ponto centralizado onde o colaborador pode consultar dados importantes, acompanhar sua rotina profissional e interagir com o departamento de Recursos Humanos.</p>
+            
+            <p><strong>Funcionalidades principais do Meu RH:</strong></p>
+            <ol>
+                <li><strong>Holerites</strong>: Os holerites ficam disponíveis para consulta de forma rápida e segura. O funcionário pode acessar seus comprovantes de pagamento a qualquer momento, eliminando a necessidade de solicitações manuais ao RH.</li>
+                <li><strong>Controle de Horas</strong>: A plataforma permite verificar as <strong>horas trabalhadas</strong>, <strong>horas extras</strong> e eventuais <strong>débitos de horas</strong>, ajudando o colaborador a ter maior controle sobre sua jornada e planejamentos.</li>
+                <li><strong>Férias e Licenças</strong>: Informações sobre o saldo de férias, períodos disponíveis e licenças (como maternidade ou médica) também podem ser acessadas diretamente pelo sistema.</li>
+            </ol>
+        `;
+        modal.classList.remove("hidden");
+    });
+
+    contatoLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        modalDetails.innerHTML = `
+            <h2>Contato de Suporte</h2>
+            <p>Caso precise de assistência, você tem várias opções para entrar em contato:</p>
+            
+            <ol>
+                <li><strong>Suporte da Empresa</strong>: Entre em contato com o setor de TI ou suporte interno através dos ramais disponíveis em sua unidade.</li>
+                <li><strong>Contato com o Gestor</strong>: Se o problema for relacionado à sua área de trabalho, entre em contato diretamente com seu gestor imediato.</li>
+                <li><strong>E-mail Oficial</strong>: Para questões gerais ou técnicas relacionadas ao Fluig e sistemas internos, envie um e-mail para <strong>fluig@andra.com.br</strong>.</li>
+            </ol>
+            
+            <p>Lembre-se sempre de fornecer o máximo de detalhes possíveis ao relatar um problema para agilizar o processo de resolução.</p>
+        `;
+        modal.classList.remove("hidden");
     });
 
     // Modal close events
