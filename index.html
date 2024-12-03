@@ -6,90 +6,135 @@
     <title>ANDRA - Informações e Emails</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
     <style>
-     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Roboto', Arial, sans-serif;
-    background: linear-gradient(135deg, #0f172a, #0ea5e9);
-    color: #f8fafc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 10px;
-    overflow-x: hidden;
-}
-
-/* Container principal */
-.container {
-    max-width: 500px;
-    width: 100%;
-    text-align: center;
-    background: rgba(30, 41, 59, 0.8);
-    border-radius: 15px;
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(8px); /* Para o efeito de vidro */
-    overflow: hidden;
-}
-
-
- header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #1e293b;
-            padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-header .nav-list {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
+        :root {
+            --primary-color: #0ea5e9;
+            --secondary-color: #3b82f6;
+            --dark-background: #0f172a;
+            --light-text: #f8fafc;
+            --nav-background: #1e293b;
+        }
 
-header .nav-list li a {
-    text-decoration: none;
-    color: #94a3b8;
-    font-weight: bold;
-    transition: color 0.3s;
-}
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--dark-background), var(--primary-color));
+            color: var(--light-text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-header .nav-list li a:hover {
-    color: #0ea5e9;
-}
-/* Lista de links */
-.links-list {
-    list-style: none;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+        /* Enhanced Header */
+        header {
+            background-color: var(--nav-background);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
 
-/* Botão de link */
-.link-btn {
-    font-size: 1rem;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 50px;
-    background: linear-gradient(90deg, #0ea5e9, #3b82f6);
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-.link-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        header .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        header .nav-list li a {
+            text-decoration: none;
+            color: #94a3b8;
+            font-weight: 600;
+            transition: color 0.3s, transform 0.2s;
+            position: relative;
+        }
+
+        header .nav-list li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        header .nav-list li a:hover {
+            color: var(--primary-color);
+        }
+
+        header .nav-list li a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px 50px;
+        }
+
+        .links-container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            padding: 30px;
+        }
+
+        .links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .link-btn {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .link-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
 
 /* Modal */
 .modal {
@@ -206,15 +251,12 @@ header .nav-list li a:hover {
     text-align: center;
     font-size: 1rem;
 }
-  footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            padding: 10px;
-            background-color: #1e293b;
+    footer {
+            background-color: var(--nav-background);
             color: #94a3b8;
-            font-size: 0.9rem;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
         }
 footer a {
     color: #0ea5e9;
@@ -228,6 +270,9 @@ footer a:hover {
     
 <body>
      <header>
+         <div class="logo">
+            <img src="https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0xNzk3JnZlcj0xMDAwJmZpbGU9YW5kcmEtbG9nbyslMjgxJTI5KyUyODElMjkucG5nJmNyYz00MjIwODY0MTU4JnNpemU9MC4wMDYwNjcmdUlkPTI1JmZTSWQ9MSZ1U0lkPTEmZD1mYWxzZSZ0a249JnB1YmxpY1VybD10cnVlJmF0dGFjaD1mYWxzZQ==.png" alt="Andra Logo">
+        </div>
         <nav>
             <ul class="nav-list">
                 <li><a href="#home" id="homeLink">Home</a></li>
@@ -237,16 +282,16 @@ footer a:hover {
         </nav>
     </header>
     <div class="container">
-     
-        <main>
-            <ul class="links-list">
-                <li><button class="link-btn" data-info="1">📧Qual é o meu email?📧</button></li>
-                <li><button class="link-btn" data-info="2">🖱️Como eu acesso meu email?🖱️</button></li>
-                <li><button class="link-btn" data-info="3">💻Como eu acesso o fluig?💻</button></li>
-                <li><button class="link-btn" data-info="4">📲Como eu acesso o Meu RH📲</button></li>
-                <li><button class="link-btn" data-info="5">📟Buscar meu email📟</button></li>
-            </ul>
-        </main>
+       <div class="links-container">
+            <main>
+                <ul class="links-list">
+                    <li><button class="link-btn" data-info="1">📧 Qual é o meu email? 📧</button></li>
+                    <li><button class="link-btn" data-info="2">🖱️ Como eu acesso meu email? 🖱️</button></li>
+                    <li><button class="link-btn" data-info="3">💻 Como eu acesso o Fluig? 💻</button></li>
+                    <li><button class="link-btn" data-info="4">📲 Como eu acesso o Meu RH? 📲</button></li>
+                    <li><button class="link-btn" data-info="5">📟 Buscar meu email 📟</button></li>
+                </ul>
+            </main>
         
     </div>
 
