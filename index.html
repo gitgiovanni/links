@@ -3,52 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hub de Links</title>
+    <title>ANDRA - Informações e Emails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0xNzk3JnZlcj0xMDAwJmZpbGU9YW5kcmEtbG9nbyslMjgxJTI5KyUyODElMjkucG5nJmNyYz00MjIwODY0MTU4JnNpemU9MC4wMDYwNjcmdUlkPTI1JmZTSWQ9MSZ1U0lkPTEmZD1mYWxzZSZ0a249JnB1YmxpY1VybD10cnVlJmF0dGFjaD1mYWxzZQ==.png" alt="Logotipo" class="logo">
+            <img src="https://fluig.andra.com.br/volume/stream/Rmx1aWc=/P3Q9MSZ2b2w9RGVmYXVsdCZpZD0xNzk3JnZlcj0xMDAwJmZpbGU9YW5kcmEtbG9nbyslMjgxJTI5KyUyODElMjkucG5nJmNyYz00MjIwODY0MTU4JnNpemU9MC4wMDYwNjcmdUlkPTI1JmZTSWQ9MSZ1U0lkPTEmZD1mYWxzZSZ0a249JnB1YmxpY1VybD10cnVlJmF0dGFjaD1mYWxzZQ==.png" alt="Andra Logo" class="logo">
             <h1>Clique em um dos botões para ver informações detalhadas!</h1>
         </header>
+
         <main>
             <ul class="links-list">
-                <li>
-                    <button class="link-btn" data-info="1">Qual é o meu email ?</button>
-                </li>
-                <li>
-                    <button class="link-btn" data-info="2">Como eu acesso meu email? </button>
-                </li>
-                <li>
-                    <button class="link-btn" data-info="3">Como eu acesso o fluig ?</button>
-                </li>
-                <li>
-                    <button class="link-btn" data-info="4">Como eu acesso o Meu RH</button>
-                </li>
+                <li><button class="link-btn" data-info="1">Qual é o meu email?</button></li>
+                <li><button class="link-btn" data-info="2">Como eu acesso meu email?</button></li>
+                <li><button class="link-btn" data-info="3">Como eu acesso o fluig?</button></li>
+                <li><button class="link-btn" data-info="4">Como eu acesso o Meu RH</button></li>
+                <li><button class="link-btn" data-info="5">Buscar meu email</button></li>
             </ul>
         </main>
-         <h3>Vídeo que explica todos os processos:</h3>
-          <iframe 
-        width="600" 
-        height="338" 
-        src="https://www.youtube.com/embed/vjVkXlxsO8Q" 
-        title="Vídeo do YouTube" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-        <footer>
-            <p>&copy; ANDRA</p>
-        </footer>
     </div>
 
-    <!-- Modal para mostrar detalhes -->
-    <div class="modal hidden" id="infoModal">
+    <div id="infoModal" class="modal hidden">
         <div class="modal-content">
-            <button class="close-btn" id="closeModal">✖</button>
-            <div id="modalDetails">
-                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+            <button id="closeModal" class="close-btn">✖</button>
+            <div id="modalDetails"></div>
+        </div>
+    </div>
+
+    <div id="emailLookupModal" class="modal hidden">
+        <div class="modal-content">
+            <button id="closeEmailLookupModal" class="close-btn">✖</button>
+            <div id="emailLookupDetails">
+                <h2>Buscar Email</h2>
+                <input type="text" id="cpfInput" placeholder="Digite seu CPF">
+                <button id="findEmailBtn">Buscar</button>
+                <div id="emailResult"></div>
             </div>
         </div>
     </div>
