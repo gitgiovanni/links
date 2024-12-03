@@ -115,4 +115,40 @@ header h1 {
 .close-btn:hover {
     background: #b91c1c;
 }
-    
+
+/* Email Lookup Styles */
+#emailLookupDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#cpfInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #0ea5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+#findEmailBtn {
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#findEmailBtn:hover {
+    background-color: #0284c7;
+}
+
+#emailResult {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1rem;
+}
