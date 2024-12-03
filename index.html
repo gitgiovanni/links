@@ -5,7 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANDRA - Informações e Emails</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    background: #1e293b;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Logotipo e cabeçalho */
+header .logo {
+    max-width: 100px;
+    margin: 20px auto 10px;
+    display: block;
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 5px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: #facc15;
+    margin-bottom: 20px;
+}
+
+/* Lista de links */
+.links-list {
+    list-style: none;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Botão de link */
+.link-btn {
+    font-size: 1.2rem;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(14, 165, 233, 0.1);
+    color: #0ea5e9;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.link-btn:hover {
+    background-color: #0ea5e9;
+    color: #1e293b;
+    transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #f8fafc;
+    color: #1e293b;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dc2626;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background: #b91c1c;
+}
+
+/* Email Lookup Styles */
+#emailLookupDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#cpfInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #0ea5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+#findEmailBtn {
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#findEmailBtn:hover {
+    background-color: #0284c7;
+}
+
+#emailResult {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1rem;
+}
+    </style>
 </head>
 <body>
     <div class="container">
