@@ -447,7 +447,7 @@ cpfInput.addEventListener("input", () => {
                 emailLookupModal.classList.add("hidden");
                 modal.classList.remove("hidden");
             } else {
-                emailResult.innerHTML = '<p style="color: red;">Nenhum email encontrado para este CPF.</p>';
+                emailResult.innerHTML = '<p style="color: red;">Email não encontrado, por gentileza verifique se digitou o cpf corretamente, caso esteja certo, contate o seu gestor ou ligue para o ramal 6056 (São Paulo)</p>';
             }
         } catch (error) {
             emailResult.innerHTML = `<p style="color: red;">Erro: ${error.message}</p>`;
