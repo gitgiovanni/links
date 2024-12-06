@@ -412,17 +412,23 @@ cpfInput.addEventListener("input", () => {
     });
 
     // Email lookup functionality
-        findEmailBtn.addEventListener("click", async () => {
+findEmailBtn.addEventListener("click", async () => {
+    console.log("Botão de busca clicado.");
+
     const cpf = cpfInput.value.replace(/[^\d]/g, ''); // Remove máscara
+    console.log("CPF informado:", cpf);
 
     if (cpf.length !== 11) {
+        console.log("CPF inválido. Tamanho diferente de 11 dígitos.");
         emailResult.innerHTML = '<p style="color: red;">CPF inválido. Digite 11 dígitos.</p>';
         return;
     }
 
     emailResult.innerHTML = '<p style="color: blue;">Buscando email...</p>';
+    console.log("Mensagem de busca exibida.");
 
     try {
+        console.log("Iniciando fetch para a API.");
         const response = await fetch(`https://10.30.35.8:8443/REST/WSGETFUNCIONARIO?cpf=${cpf}`, {
             method: 'GET',
             headers: {
@@ -430,16 +436,22 @@ cpfInput.addEventListener("input", () => {
             }
         });
 
+        console.log("Resposta da API recebida:", response);
+
         if (!response.ok) {
+            console.error("Erro na resposta da API:", response.statusText);
             throw new Error(`Erro na API: ${response.statusText}`);
         }
 
         const data = await response.json();
+        console.log("Dados da API:", data);
 
         if (data.Funcionarios && data.Funcionarios.length > 0) {
             const email = data.Funcionarios[0].Email;
+            console.log("Email encontrado:", email);
 
             if (email) {
+                console.log("Atualizando modal com email encontrado.");
                 modalDetails.innerHTML = `
                     <h2>Resultado da Busca</h2>
                     <p>Email encontrado:</p>
@@ -448,15 +460,21 @@ cpfInput.addEventListener("input", () => {
                 emailLookupModal.classList.add("hidden");
                 modal.classList.remove("hidden");
             } else {
+                console.warn("Nenhum email encontrado no resultado da API.");
                 emailResult.innerHTML = '<p style="color: red;">Nenhum email encontrado para este CPF.</p>';
             }
         } else {
+            console.warn("Nenhum dado retornado pela API para o CPF informado.");
             emailResult.innerHTML = '<p style="color: red;">Nenhum dado retornado da API.</p>';
         }
     } catch (error) {
+        console.error("Erro durante a busca:", error);
         emailResult.innerHTML = `<p style="color: red;">Erro: ${error.message}</p>`;
     }
+
+    console.log("Execução do evento finalizada.");
 });
+
 
              const infoLink = document.getElementById("infoLink");
     const contatoLink = document.getElementById("contatoLink");
